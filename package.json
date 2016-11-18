@@ -1,0 +1,23 @@
+{
+  "name": "codeschool-watcher",
+  "version": "1.0.0",
+  "description": "CodeSchool price watcher",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gcardo_o@bitbucket.org/gcardo_o/codeschool-watcher.git"
+  },
+  "author": "Gonçalo Cardoso",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/gcardo_o/codeschool-watcher#readme",
+  "dependencies": {
+    "cron": "^1.1.1",
+    "fast-html-parser": "^1.0.1",
+    "http-request": "^0.7.0",
+    "slack-webhook": "^1.0.0"
+  }
+}
