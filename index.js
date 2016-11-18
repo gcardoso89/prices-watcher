@@ -4,6 +4,9 @@ var HTMLParser = require('fast-html-parser');
 var SlackWebhook = require('slack-webhook');
 var slack = new SlackWebhook('https://hooks.slack.com/services/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');
 
+var currentYear = null;
+var currentMonth = null;
+
 var getPriceFromHTML = function ( htmlParsed, selector ) {
 
 	var price = null;
@@ -21,16 +24,23 @@ var getCodeSchoolPrices = function() {
 	http.get('https://www.codeschool.com/pricing', function( err, data ){
 
 		if ( !err ){
+
 			var html = data.buffer.toString();
 			var htmlParsed = HTMLParser.parse(html);
 			var yearlyPrice = getPriceFromHTML(htmlParsed, '.js-price-target');
 			var monthlyPrice = getPriceFromHTML(htmlParsed, '#monthly-price');
 
-			slack.send({
-				text: '@tiago @gcardoso @bruno.assuncao @claudia_bernardo @ricardo.proenca @goncalo.assuncao @iranha Code school prices: *' + yearlyPrice + '*$/year | *' + monthlyPrice + '*$/month\nhttps://www.codeschool.com/pricing',
-				icon_emoji: ':ghost:',
-				link_names: 1
-			})
+			if ( yearlyPrice !== currentYear || monthlyPrice !== currentMonth ){
+				slack.send({
+					text: '@tiago @gcardoso @bruno.assuncao @claudia_bernardo @ricardo.proenca @goncalo.assuncao @iranha NEW CODE SCHOOL PRICES!!!\n*' + yearlyPrice + '*$/year | *' + monthlyPrice + '*$/month\nhttps://www.codeschool.com/pricing',
+					icon_emoji: ':ghost:',
+					link_names: 1
+				});
+
+				currentYear = yearlyPrice;
+				currentMonth = monthlyPrice;
+			}
+
 		}
 
 	});
@@ -38,12 +48,10 @@ var getCodeSchoolPrices = function() {
 };
 
 var job = new CronJob({
-	cronTime: '00 30 10,12,14,16,18 * * 0-6',
+	cronTime: '00 0,30 * * * 0-6',
 	onTick: getCodeSchoolPrices,
 	start: false,
 	timeZone: 'Europe/Lisbon'
 });
 
 job.start();
-
-getCodeSchoolPrices();
