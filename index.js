@@ -42,7 +42,7 @@ var getCodeSchoolPrices = function() {
 
 			if ( yearlyPrice !== currentYear || monthlyPrice !== currentMonth ){
 				slack.send({
-					text: '@tiago @gcardoso @bruno.assuncao @claudia_bernardo @ricardo.proenca @goncalo.assuncao @iranha'+
+					text: '@tiago @joao.ramalho @leandro @gcardoso @bruno.assuncao @claudia_bernardo @ricardo.proenca @goncalo.assuncao @iranha '+
 					'NEW CODE SCHOOL PRICES!!!\n'+
 					'*Yearly plan:* $' + yearlyPrice + '/mo ($'+ parseInt( yearlyPrice, 10 ) * 12 + ')' +
 					'\n*Montly plan:* $' + monthlyPrice + '/mo' +
