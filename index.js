@@ -45,3 +45,5 @@ var job = new CronJob({
 });
 
 job.start();
+
+getCodeSchoolPrices();
