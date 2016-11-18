@@ -41,6 +41,8 @@ var getCodeSchoolPrices = function() {
 				currentMonth = monthlyPrice;
 			}
 
+		} else {
+			console.log( err );
 		}
 
 	});
@@ -48,10 +50,12 @@ var getCodeSchoolPrices = function() {
 };
 
 var job = new CronJob({
-	cronTime: '00 0,30 * * * 0-6',
+	cronTime: '00 00,30 * * * 0-6',
 	onTick: getCodeSchoolPrices,
 	start: false,
 	timeZone: 'Europe/Lisbon'
 });
 
 job.start();
+
+getCodeSchoolPrices();
