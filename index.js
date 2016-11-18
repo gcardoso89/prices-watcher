@@ -27,7 +27,7 @@ var getCodeSchoolPrices = function() {
 			var monthlyPrice = getPriceFromHTML(htmlParsed, '#monthly-price');
 
 			slack.send({
-				text: '@tiago @gcardoso @bruno.assuncao @claudia_bernardo @ricardo.proenca @goncalo.assuncao @iranha Code school prices: *' + yearlyPrice + '*$/year | *' + monthlyPrice + '*$/month',
+				text: '@tiago @gcardoso @bruno.assuncao @claudia_bernardo @ricardo.proenca @goncalo.assuncao @iranha Code school prices: *' + yearlyPrice + '*$/year | *' + monthlyPrice + '*$/month\nhttps://www.codeschool.com/pricing',
 				icon_emoji: ':ghost:',
 				link_names: 1
 			})
