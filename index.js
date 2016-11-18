@@ -38,7 +38,7 @@ var getCodeSchoolPrices = function() {
 };
 
 var job = new CronJob({
-	cronTime: '00 * 23 * * 0-6',
+	cronTime: '00 30 10,12,14,16,18 * * 0-6',
 	onTick: getCodeSchoolPrices,
 	start: false,
 	timeZone: 'Europe/Lisbon'
